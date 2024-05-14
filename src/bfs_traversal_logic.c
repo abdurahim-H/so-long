@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   bfs_traversal_logic.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/28 05:19:56 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/08 07:45:32 by abhudulo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "so_long.h"
 
 bool is_empty(t_node *queue) {
@@ -25,7 +13,12 @@ void free_resources(bool **visited, int height) {
 
 bool bfs(char **map, int start_x, int start_y, int map_width, int map_height) {
     bool **visited = initialize_visited(map_width, map_height);
-    bool path_to_exit = false; // Assume no path by default
+    if (!visited) {
+        fprintf(stderr, "Failed to allocate visited array.\n");
+        return false;
+    }
+
+    bool path_to_exit = false;
     t_node *queue = NULL;
 
     enqueue(&queue, start_x, start_y);
@@ -38,16 +31,15 @@ bool bfs(char **map, int start_x, int start_y, int map_width, int map_height) {
         int x, y;
         dequeue(&queue, &x, &y);
 
-        // Check if this node is the exit
-        if (map[y][x] == 'E') {
+        if (map[y][x] == EXIT) {
             path_to_exit = true;
-            break; // Exit found, no need to continue
+            break;
         }
 
         for (int i = 0; i < 4; i++) {
             int nx = x + dx[i], ny = y + dy[i];
 
-            if (nx >= 0 && nx < map_width && ny >= 0 && ny < map_height && map[ny][nx] != '1' && !visited[ny][nx]) {
+            if (nx >= 0 && nx < map_width && ny >= 0 && ny < map_height && map[ny][nx] != WALL && !visited[ny][nx]) {
                 enqueue(&queue, nx, ny);
                 visited[ny][nx] = true;
             }

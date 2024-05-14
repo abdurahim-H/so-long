@@ -1,56 +1,44 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   game_objects.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 10:34:07 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/08 07:45:55 by abhudulo         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "so_long.h"
 
-// int	check_boundaries(int new_x, int new_y)
-// {
-// 	return (new_x >= 0 && new_x < (int)((35 * map->width) - image->width) &&
-// 			new_y >= 0 && new_y < (int)((85 * map->height) - image->height) &&
-// 			map->data[new_y / 20][new_x / 20] != '1');
-// }
-
-void	enqueue(t_node **head, int x, int y)
-{
-	t_node		*new_node;
-	t_node		*current;
-
-	new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		return ;
-	new_node->x = x;
-	new_node->y = y;
-	new_node -> next = NULL;
-	if (*head == NULL)
-		*head = new_node;
-	else
-	{
-		current = *head;
-		while (current -> next != NULL)
-			current = current -> next;
-		current->next = new_node;
-	}
+void game_loop(mlx_t *mlx, GameContext *context) {
+    mlx_loop_hook(mlx, game_hook, context);
+    mlx_loop(mlx);
+    mlx_terminate(mlx);
 }
 
-bool	dequeue(t_node **head, int *x, int *y)
-{
-	t_node		*temp;
+void hide_exit(t_map *map) {
+    if (exit_x != -1 && exit_y != -1) {
+        printf("Hiding exit at [%d, %d].\n", exit_x, exit_y);
+        map->data[exit_y][exit_x] = EMPTY;
+    }
+}
 
-	if (*head == NULL)
-		return (false);
-	temp = *head;
-	*x = temp -> x;
-	*y = temp -> y;
-	*head = temp -> next;
-	free(temp);
-	return (true);
+void reveal_map(t_map *map) {
+    if (exit_x != -1 && exit_y != -1) {
+        printf("Revealing exit at [%d, %d].\n", exit_x, exit_y);
+        map->data[exit_y][exit_x] = EXIT;
+    }
+}
+
+void free_sprites(mlx_t *mlx, GameSprites *sprites) {
+    if (sprites->wall) {
+        mlx_delete_image(mlx, sprites->wall);
+        sprites->wall = NULL;
+    }
+    if (sprites->collectible) {
+        mlx_delete_image(mlx, sprites->collectible);
+        sprites->collectible = NULL;
+    }
+    if (sprites->exit) {
+        mlx_delete_image(mlx, sprites->exit);
+        sprites->exit = NULL;
+    }
+    if (sprites->player) {
+        mlx_delete_image(mlx, sprites->player);
+        sprites->player = NULL;
+    }
+    if (sprites->floor) {
+        mlx_delete_image(mlx, sprites->floor);
+        sprites->floor = NULL;
+    }
 }
