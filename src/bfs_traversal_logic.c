@@ -6,7 +6,7 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:43:29 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 21:35:37 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:46:32 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	bfs_helper(t_bfs *bfs)
 	return (false);
 }
 
-bool	bfs(MapInfo mapInfo, int start_x, int start_y)
+bool	bfs(t_mapinfo mapInfo, int start_x, int start_y)
 {
 	t_bfs	bfs;
 	int		i;

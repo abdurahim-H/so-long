@@ -6,12 +6,9 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:36:13 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 21:38:07 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:50:09 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "so_long.h"
-#include "../inc/ft_gc.h"
 
 #include "so_long.h"
 #include "../inc/ft_gc.h"

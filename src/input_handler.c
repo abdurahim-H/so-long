@@ -6,26 +6,13 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:43:54 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 20:01:15 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:53:48 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_gc.h"
 #include "so_long.h"
 
-void	update_key_state(t_key_state *state, int is_currently_pressed)
-{
-	if (is_currently_pressed && !state->is_pressed)
-	{
-		state->is_pressed = 1;
-		printf("Key Pressed\n");
-	}
-	else if (!is_currently_pressed && state->is_pressed)
-	{
-		state->is_pressed = 0;
-		printf("Key Released\n");
-	}
-}
 
 void	game_hook(void *param)
 {

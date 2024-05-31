@@ -6,7 +6,7 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:44:31 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 20:02:03 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:54:37 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,6 @@ void	handle_newline(const char **p, char **data, int *y, int *x)
 	*x = 0;
 }
 
-void	handle_excess_width(const char **p, char **data, int *y, int *x)
-{
-	fprintf(stderr, "Line w exceeds expected w, truncating: %s\n", data[*y]);
-	while (**p && **p != '\n' && **p != '\r')
-		(*p)++;
-	data[*y][*x] = '\0';
-}
-
 void	fill_map_data(char **data, const char *content, int height, int width)
 {
 	int				y;
@@ -64,8 +56,6 @@ void	fill_map_data(char **data, const char *content, int height, int width)
 			handle_newline(&p, data, &y, &x);
 		else if (x < width)
 			data[y][x++] = *p;
-		else
-			handle_excess_width(&p, data, &y, &x);
 		p++;
 	}
 	if (y < height)
