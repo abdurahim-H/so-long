@@ -6,7 +6,7 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 21:01:24 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 19:55:27 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/05/31 22:56:38 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <stdbool.h>
 # include <ctype.h>
 # include <assert.h>
-// #include "../lib/MiniLibX/include/MLX42/MLX42.h"
 # include "../lib/MiniLibX/include/MLX42/MLX42_Int.h"
 # include "../lib/MiniLibX/include/MLX42/MLX42.h"
 
@@ -47,6 +46,8 @@ typedef struct s_map
 	char			**data;
 	int				player_x;
 	int				player_y;
+	int				start_x;
+	int				start_y;
 }	t_map;
 
 typedef struct s_game_sprites
@@ -111,16 +112,16 @@ typedef struct s_sprite_args
 
 typedef struct s_map_info
 {
-    int		map_width;
-    int		map_height;
-    char	**map;
+	int		map_width;
+	int		map_height;
+	char	**map;
 }	t_map_info;
 
 typedef struct s_queue_info
 {
-    t_Node **queue;
-    bool **visited;
-    t_map_info *map_info;
+	t_Node **queue;
+	bool **visited;
+	t_map_info *map_info;
 }	t_queue_info;
 
 typedef struct s_draw_context
@@ -130,31 +131,43 @@ typedef struct s_draw_context
 	t_game_sprites	*sprites;
 }	t_draw_context;
 
+typedef struct s_bfs
+{
+	char			**map;
+	t_node			*queue;
+	int				*dx;
+	int				*dy;
+	bool			**visited;
+	int				map_width;
+	int				map_height;
+}	t_bfs;
+
+typedef struct s_mapinfo
+{
+	char	**map;
+	int		map_width;
+	int		map_height;
+}	t_mapinfo;
+
 extern int	g_exit_x;
 extern int	g_exit_y;
 extern int	g_total_collectibles;
 extern int	g_collected_count;
 
-// Function declarations
 char	*read_file_content(const char *file_path);
 void	calculate_map_dimensions(const char *content, int *width, int *height);
 void	fill_map_data(char **data, const char *content, int height, int width);
 t_map	*parse_map(const char *file_path);
-void	free_map(t_map *map);
-bool	validate_map(t_map *map);
 char	**allocate_map_data(int width, int height);
 bool	check_borders(t_map *map);
 bool	check_rectangular_shape(t_map *map);
 void	game_hook(void *param);
 void	enqueue(t_node **head, int x, int y);
 bool	dequeue(t_node **head, int *x, int *y);
-bool	bfs(char **map, int start_x, int start_y, int map_width, int map_height);
-// void	validate_collectible_accessibility(char** map, int start_x, int start_y,
-// 			int map_width, int map_height, t_collectible* collectibles, int collectible_count);
+bool	bfs(t_mapinfo mapInfo, int start_x, int start_y);
 void	enqueue_collectible(t_Node** head, t_point point);
 bool	dequeue_collectible(t_Node** head, t_point* point);
 bool	**initialize_visited(int width, int height);
-// void	validate_collectible_accessibility(char **map, int start_x, int start_y, int width, int height, t_collectible *collectibles, int collectible_count);
 void	validate_collectible_accessibility(t_map_info *map_info,
 	int start_x, int start_y);
 bool	check_all_collected(t_map *map);
@@ -176,19 +189,14 @@ void	handle_player_input(int key, t_game_context *context);
 bool	check_boundaries(int x, int y, t_map *map);
 bool	attempt_move(t_game_context *context, int dx, int dy);
 bool	update_player_position(t_game_context *context, int dx, int dy);
-// void	draw_tile(mlx_t *mlx, t_map *map, t_game_sprites *sprites, int x, int y);
 void	load_sprites(mlx_t *mlx, t_game_sprites *sprites, int tile_width, int tile_height);
 void	free_sprites(mlx_t *mlx, t_game_sprites *sprites);
-void	render_map(mlx_t *mlx, t_map *map, t_game_sprites *sprites);
-// void	draw_tile(mlx_t *mlx, t_map *map, t_game_sprites *sprites, int x, int y);
 void	draw_tile(t_draw_context *context, int x, int y);
-void	handle_window_resize(mlx_t *mlx, t_game_sprites *sprites, t_game_context *context, int new_width,
-			int new_height);
-void	resize_callback(int new_width, int new_height, void *param);
 bool	can_exit_game(t_map *map, int x, int y);
 int		count_collectibles(char **map, int width, int height);
 void	cleanup_game(t_game_context *context);
 char	*allocate_buffer(int fd, struct stat *statbuf);
 void	exit_game(mlx_t *mlx);
 bool	is_valid_position(t_game_context *context, int new_x, int new_y);
+
 #endif

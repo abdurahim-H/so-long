@@ -6,7 +6,7 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:44:24 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 21:39:25 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/05/31 23:08:01 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,37 @@ void	cleanup_game(t_game_context *context)
 	mlx_terminate(context->mlx);
 }
 
+void	initialize_game(t_game_context *context, char *map_file)
+{
+	if (!setup_game(context, map_file))
+	{
+		fprintf(stderr, "Game setup failed.\n");
+		exit(EXIT_FAILURE);
+	}
+	if (!check_borders(context->map))
+	{
+		fprintf(stderr,
+			"Invalid map. The map should be surrounded by walls.\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	setup_map_info(t_mapinfo *map_info, t_game_context *context)
+{
+	map_info->map = context->map->data;
+	map_info->map_width = context->map->width;
+	map_info->map_height = context->map->height;
+	if (!bfs(*map_info, context->map->player_x, context->map->player_y))
+	{
+		fprintf(stderr, "Invalid map. No valid path from start to exit.\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_game_context	context;
+	t_mapinfo		map_info;
 
 	if (argc != 2)
 	{
@@ -31,11 +59,8 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	context = (t_game_context){0};
-	if (!setup_game(&context, argv[1]))
-	{
-		fprintf(stderr, "Game setup failed.\n");
-		return (EXIT_FAILURE);
-	}
+	initialize_game(&context, argv[1]);
+	setup_map_info(&map_info, &context);
 	mlx_key_hook(context.mlx, key_hook, &context);
 	mlx_loop(context.mlx);
 	cleanup_game(&context);

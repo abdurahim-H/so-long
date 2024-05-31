@@ -6,7 +6,7 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:44:31 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 21:54:37 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/05/31 22:52:19 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,50 @@ void	fill_map_data(char **data, const char *content, int height, int width)
 		fprintf(stderr, "Not enough l, e %d, got %d\n", height, y);
 }
 
+// bool	check_borders(t_map *map)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (i < map->width)
+// 	{
+// 		if (map->data[0][i] != WALL || map->data[map->height - 1][i] != WALL)
+// 			return (false);
+// 		i++;
+// 	}
+// 	while (i < map->height)
+// 	{
+// 		if (map->data[i][0] != WALL || map->data[i][map->width - 1] != WALL)
+// 			return (false);
+// 		i++;
+// 	}
+// 	return (true);
+// }
+
+// bool	check_borders(t_map *map)
+// {
+// 	int	i;
+// 	size_t	expected_width;
+
+// 	expected_width = strlen(map->data[0]);
+// 	i = 0;
+// 	while (i < map->width)
+// 	{
+// 		if (map->data[0][i] != WALL || map->data[map->height - 1][i] != WALL)
+// 			return (false);
+// 		i++;
+// 	}
+// 	while (i < map->height)
+// 	{
+// 		if (strlen(map->data[i]) != expected_width)
+// 			return (false);
+// 		if (map->data[i][0] != WALL || map->data[i][map->width - 1] != WALL)
+// 			return (false);
+// 		i++;
+// 	}
+// 	return (true);
+// }
+
 bool	check_borders(t_map *map)
 {
 	int	i;
@@ -73,6 +117,7 @@ bool	check_borders(t_map *map)
 			return (false);
 		i++;
 	}
+	i = 0;
 	while (i < map->height)
 	{
 		if (map->data[i][0] != WALL || map->data[i][map->width - 1] != WALL)
