@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_images.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/28 02:29:06 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2023/03/30 16:36:39 by ntamayo-      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_images.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 02:29:06 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/15 15:22:23 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,57 @@ int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y)
 	return (mlx_freen(2, instances, queue), mlx_error(MLX_MEMFAIL), -1);
 }
 
+// int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y) {
+//     MLX_NONNULL(mlx);
+//     MLX_NONNULL(img);
+
+//     // Reuse or update an existing instance if possible
+//     for (int i = 0; i < img->count; i++) {
+//         mlx_instance_t* inst = &img->instances[i];
+//         if (inst->enabled && inst->x == x && inst->y == y) {
+//             // Instance is already at the correct position, just ensure it's enabled
+//             inst->z = ((mlx_ctx_t*)mlx->context)->zdepth++;  // Update z-index if needed
+//             return i;  // Return existing index
+//         }
+//     }
+
+//     // Allocate a new instance if no reusable instance was found
+//     bool did_realloc;
+//     mlx_instance_t* instances = mlx_grow_instances(img, &did_realloc);
+//     if (!instances) {
+//         return mlx_error(MLX_MEMFAIL), -1;
+//     }
+
+//     // Create a new draw queue entry
+//     draw_queue_t* queue = calloc(1, sizeof(draw_queue_t));
+//     if (!queue) {
+//         if (did_realloc) {
+//             free(instances);
+//         }
+//         return mlx_error(MLX_MEMFAIL), -1;
+//     }
+
+//     // Set up the new instance
+//     int32_t index = img->count++;
+//     instances[index].x = x;
+//     instances[index].y = y;
+//     instances[index].z = ((mlx_ctx_t*)mlx->context)->zdepth++;
+//     instances[index].enabled = true;
+//     img->instances = instances;
+
+//     // Add the new instance to the draw queue
+//     queue->image = img;
+//     queue->instanceid = index;
+//     mlx_list_t* templst;
+//     if ((templst = mlx_lstnew(queue))) {
+//         mlx_lstadd_front(&((mlx_ctx_t*)mlx->context)->render_queue, templst);
+//         return index;
+//     }
+
+//     return mlx_freen(2, instances, queue), mlx_error(MLX_MEMFAIL), -1;
+// }
+
+
 mlx_image_t* mlx_new_image(mlx_t* mlx, uint32_t width, uint32_t height)
 {
 	MLX_NONNULL(mlx);
@@ -220,9 +271,9 @@ void mlx_delete_image(mlx_t* mlx, mlx_image_t* image)
 		mlx_freen(5, image->pixels, image->instances, image->context, imglst, image);
 	}
 }
-
 bool mlx_resize_image(mlx_image_t* img, uint32_t nwidth, uint32_t nheight)
 {
+
 	MLX_NONNULL(img);
 
 	if (!nwidth || !nheight || nwidth > INT16_MAX || nheight > INT16_MAX)

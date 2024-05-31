@@ -1,0 +1,30 @@
+{
+	"cmake.sourceDirectory": "/Users/abhudulo/Desktop/c_projects/so_long_p/lib/MiniLibX",
+	"files.associations": {
+		"*.ejs": "html",
+		"stdio.h": "c",
+		"stdbool.h": "c",
+		"so_long.h": "c",
+		"mlx42.h": "c",
+		"algorithm": "c",
+		"assert.h": "c",
+		"memory": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"unordered_map": "c",
+		"ctype.h": "c",
+		"__bit_reference": "c",
+		"bitset": "c",
+		"chrono": "c",
+		"ios": "c",
+		"stat.h": "c",
+		"fcntl.h": "c",
+		"glfw3.h": "c",
+		"header": "c",
+		"iterator": "c",
+		"lodepng.h": "c",
+		"glad.h": "c",
+		"khrplatform.h": "c",
+		"ft_gc.h": "c"
+	}
+}

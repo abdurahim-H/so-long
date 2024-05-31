@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   additional_map_checkers.c                          :+:      :+:    :+:   */
+/*   map_parser_helper_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 16:20:29 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 20:00:48 by abhudulo         ###   ########.fr       */
+/*   Created: 2024/05/30 17:30:41 by abhudulo          #+#    #+#             */
+/*   Updated: 2024/05/31 20:01:59 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "../inc/ft_gc.h"
 
-bool	check_rectangular_shape(t_map *map)
+char	*allocate_buffer(int fd, struct stat *statbuf)
 {
-	size_t		expected_width;
-	int			i;
+	char	*buffer;
 
-	expected_width = strlen(map->data[0]);
-	i = 0;
-	while (i < map->height)
+	buffer = ft_gc_malloc(1, statbuf->st_size + 1);
+	if (!buffer)
 	{
-		if (strlen(map->data[i]) != expected_width)
-			return (false);
-		i++;
+		perror("Failed to allocate memory for file content");
+		close(fd);
 	}
-	return (true);
+	return (buffer);
 }

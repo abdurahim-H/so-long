@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   MLX42_Int.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/27 23:55:34 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/07/21 10:46:43 by sbos          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   MLX42_Int.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/27 23:55:34 by W2Wizard          #+#    #+#             */
+/*   Updated: 2024/05/15 03:02:00 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX42_INT_H
 # define MLX42_INT_H
 # define LODEPNG_NO_COMPILE_ALLOCATORS
-# include "MLX42/MLX42.h"
-# include "lodepng/lodepng.h"
-# include "glad/glad.h"
-# include "KHR/khrplatform.h"
+// # include "MLX42/MLX42.h"
+# include "/Users/abhudulo/Desktop/c_projects/so_long_p/lib/MiniLibX/include/MLX42/MLX42.h"
+// # include "lodepng/lodepng.h"
+# include "/Users/abhudulo/Desktop/c_projects/so_long_p/lib/MiniLibX/include/lodepng/lodepng.h"
+// # include "glad/glad.h"
+# include "/Users/abhudulo/Desktop/c_projects/so_long_p/lib/MiniLibX/include/glad/glad.h"
+// # include "KHR/khrplatform.h"
+# include "/Users/abhudulo/Desktop/c_projects/so_long_p/lib/MiniLibX/include/KHR/khrplatform.h"
 # if defined(__APPLE__)
 #  define GL_SILENCE_DEPRECATION
 # endif

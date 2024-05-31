@@ -1,9 +1,9 @@
 NAME = so_long
-CC = cc -g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
-# CFLAGS = -Wall -Wextra -Werror
-# MLX = /Users/abhudulo/Desktop/c_projects/so_long/lib/MiniLibX/build/libmlx42.a -framework OpenGL -framework AppKit
-MLX = /Users/abhudulo/Desktop/c_projects/so_long/lib/MiniLibX/build/libmlx42.a -framework OpenGL -framework AppKit -lglfw
-SRC_DIR = src/
+CC = cc -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
+MLX_PATH = lib/MiniLibX/build/
+MLX = $(MLX_PATH)libmlx42.a -framework OpenGL -framework AppKit -lglfw
+SRC_DIR1 = src/
+SRC_DIR2 = src/srcs/
 OBJ_DIR = obj/
 INC_DIR = inc/
 
@@ -17,8 +17,9 @@ CYAN = \033[1;36m
 ORANGE = \033[1;33m
 RESET = \033[0m
 
-SRCS = $(wildcard $(SRC_DIR)*.c)
-OBJS = $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+# SRCS = $(wildcard $(SRC_DIR)*.c)
+SRCS = $(wildcard $(SRC_DIR1)*.c) $(wildcard $(SRC_DIR2)*.c)
+OBJS = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 
 all: $(NAME)
 
@@ -29,10 +30,10 @@ $(NAME): $(OBJS)
 	@echo "$(GREEN)Linking done. Executable created: $(NAME)$(RESET)"
 	@echo "$(CYAN)Linking process finished.$(RESET)"
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+$(OBJ_DIR)%.o: %.c
 	@echo "$(CYAN)Starting compilation process for $<...$(RESET)"
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
-	mkdir -p $(OBJ_DIR)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 	@echo "$(BLUE)Compiled $< to $@.$(RESET)"
 	@echo "$(CYAN)Compilation process for $< finished.$(RESET)"

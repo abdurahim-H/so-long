@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/16 17:44:24 by abhudulo          #+#    #+#             */
+/*   Updated: 2024/05/31 20:01:53 by abhudulo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
+#include "../inc/ft_gc.h"
 
-// int collectible_count = 0;
-// int exit_x = -1, exit_y = -1;
+int g_total_collectibles = 0;
+int g_collected_count = 0;
 
-void cleanup_game(GameContext *context) {
-    free_sprites(context->mlx, &context->sprites);
+void cleanup_game(t_game_context *context)
+{
     mlx_terminate(context->mlx);
 }
 
@@ -14,14 +27,16 @@ int main(int argc, char **argv) {
         return EXIT_FAILURE;
     }
 
-    GameContext context = {0};
-    setup_game(&context, argv[1]);
+    t_game_context context = {0};
 
-    mlx_key_hook(context.mlx, key_hook, &context);
-    mlx_loop(context.mlx);
+    if (!setup_game(&context, argv[1])) {
+        fprintf(stderr, "Game setup failed.\n");
+        return EXIT_FAILURE; // Exit if setup failed
+    }
 
-    cleanup_game(&context);
-    free_map(context.map);
+    mlx_key_hook(context.mlx, key_hook, &context); // Hook the keyboard input
+    mlx_loop(context.mlx); // Start the game loop
 
+    cleanup_game(&context); // Cleanup resources upon game exit
     return EXIT_SUCCESS;
 }
