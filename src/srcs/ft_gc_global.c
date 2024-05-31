@@ -5,23 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 13:59:22 by qdam              #+#    #+#             */
-/*   Updated: 2024/05/16 17:55:57 by abhudulo         ###   ########.fr       */
+/*   Created: 2024/05/31 21:40:40 by abhudulo          #+#    #+#             */
+/*   Updated: 2024/05/31 21:40:43 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_gc_internal.h"
 
-// t_ptr	ft_gc_malloc(size_t sz)
-// {
-// 	return (ft_gc_ctx_malloc(NULL, sz));
-// }
-
 t_ptr	ft_gc_malloc(size_t n, size_t size)
 {
-    return (ft_gc_ctx_malloc(NULL, n * size));
+	return (ft_gc_ctx_malloc(NULL, n * size));
 }
-
 
 void	ft_gc_free(t_ptr p)
 {
