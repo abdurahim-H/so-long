@@ -1,0 +1,7 @@
+/Users/abhudulo/Desktop/c_projects/test/MLX42/build/CMakeFiles/mlx42.dir
+/Users/abhudulo/Desktop/c_projects/test/MLX42/build/CMakeFiles/edit_cache.dir
+/Users/abhudulo/Desktop/c_projects/test/MLX42/build/CMakeFiles/rebuild_cache.dir
+/Users/abhudulo/Desktop/c_projects/test/MLX42/build/CMakeFiles/list_install_components.dir
+/Users/abhudulo/Desktop/c_projects/test/MLX42/build/CMakeFiles/install.dir
+/Users/abhudulo/Desktop/c_projects/test/MLX42/build/CMakeFiles/install/local.dir
+/Users/abhudulo/Desktop/c_projects/test/MLX42/build/CMakeFiles/install/strip.dir
