@@ -6,7 +6,7 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 19:53:37 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 20:02:11 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/06/01 14:27:39 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../inc/ft_gc.h"
 
 int	g_move_count = 0;
+int	g_total_collectibles = 0;
 
 bool	handle_collectible(t_game_context *context, int new_x, int new_y)
 {

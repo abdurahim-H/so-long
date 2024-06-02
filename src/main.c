@@ -6,14 +6,13 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:44:24 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 23:08:01 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:38:32 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "../inc/ft_gc.h"
 
-int	g_total_collectibles = 0;
 int	g_collected_count = 0;
 
 void	cleanup_game(t_game_context *context)
@@ -48,14 +47,34 @@ void	setup_map_info(t_mapinfo *map_info, t_game_context *context)
 	}
 }
 
+bool	check_ber_extension(const char *filename)
+{
+	const char	*dot = strrchr(filename, '.');
+
+	if (!dot || dot == filename)
+		return (false);
+	return (strcmp(dot, ".ber") == 0);
+}
+
+// void	leaks(void)
+// {
+// 	system("leaks so_long");
+// }
+
 int	main(int argc, char **argv)
 {
 	t_game_context	context;
 	t_mapinfo		map_info;
 
+	// atexit(&leaks);
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: %s <map_file>\n", argv[0]);
+		return (EXIT_FAILURE);
+	}
+	if (!check_ber_extension(argv[1]))
+	{
+		fprintf(stderr, "Invalid file type. Please provide a .ber file.\n");
 		return (EXIT_FAILURE);
 	}
 	context = (t_game_context){0};
