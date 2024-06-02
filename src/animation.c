@@ -6,7 +6,7 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:43:14 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/05/31 20:01:05 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/06/02 21:08:24 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,14 @@ void	handle_player_input(int key, t_game_context *context)
 		dx = -1;
 	else if (key == MLX_KEY_D)
 		dx = 1;
+	else
+		return ;
 	if (attempt_move(context, dx, dy))
+	{
+		g_move_count++;
+		printf("Move %d\n", g_move_count);
 		render_map(context->mlx, context->map, &context->sprites);
+	}
 }
 
 bool	can_exit_game(t_map *map, int x, int y)

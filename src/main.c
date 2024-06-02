@@ -6,7 +6,7 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:44:24 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/06/01 21:38:32 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/06/02 20:44:38 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,11 @@ bool	check_ber_extension(const char *filename)
 	return (strcmp(dot, ".ber") == 0);
 }
 
-// void	leaks(void)
-// {
-// 	system("leaks so_long");
-// }
-
 int	main(int argc, char **argv)
 {
 	t_game_context	context;
 	t_mapinfo		map_info;
 
-	// atexit(&leaks);
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: %s <map_file>\n", argv[0]);

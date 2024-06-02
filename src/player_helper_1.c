@@ -6,7 +6,7 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 19:53:37 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/06/01 14:27:39 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/06/02 21:10:54 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	update_position(t_game_context *context, int new_x, int new_y)
 	context->map->player_x = new_x;
 	context->map->player_y = new_y;
 	context->map->data[new_y][new_x] = 'P';
-	g_move_count++;
-	printf("Move %d: Player moved to [%d, %d]\n", g_move_count, new_x, new_y);
 }
 
 bool	handle_tile(t_game_context *context, char target_tile,
@@ -62,6 +60,26 @@ bool	handle_tile(t_game_context *context, char target_tile,
 	return (true);
 }
 
+// bool	update_player_position(t_game_context *context, int dx, int dy)
+// {
+// 	int			new_x;
+// 	int			new_y;
+// 	char		target_tile;
+
+// 	new_x = context->map->player_x + dx;
+// 	new_y = context->map->player_y + dy;
+// 	if (!is_valid_position(context, new_x, new_y))
+// 		return (false);
+// 	target_tile = context->map->data[new_y][new_x];
+// 	if (target_tile == 'W')
+// 		return (false);
+// 	if (!handle_tile(context, target_tile, new_x, new_y))
+// 		return (false);
+// 	update_position(context, new_x, new_y);
+// 	render_map(context->mlx, context->map, &context->sprites);
+// 	return (true);
+// }
+
 bool	update_player_position(t_game_context *context, int dx, int dy)
 {
 	int			new_x;
@@ -75,9 +93,9 @@ bool	update_player_position(t_game_context *context, int dx, int dy)
 	target_tile = context->map->data[new_y][new_x];
 	if (target_tile == 'W')
 		return (false);
-	update_position(context, new_x, new_y);
 	if (!handle_tile(context, target_tile, new_x, new_y))
 		return (false);
+	update_position(context, new_x, new_y);
 	render_map(context->mlx, context->map, &context->sprites);
 	return (true);
 }
@@ -90,6 +108,9 @@ bool	attempt_move(t_game_context *context, int dx, int dy)
 	new_x = context->map->player_x + dx;
 	new_y = context->map->player_y + dy;
 	if (check_boundaries(new_x, new_y, context->map))
-		return (update_player_position(context, dx, dy));
+	{
+		if (update_player_position(context, dx, dy))
+			return (true);
+	}
 	return (false);
 }

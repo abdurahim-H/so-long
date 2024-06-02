@@ -6,7 +6,7 @@
 /*   By: abhudulo <abhudulo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 21:01:24 by abhudulo          #+#    #+#             */
-/*   Updated: 2024/06/01 21:30:59 by abhudulo         ###   ########.fr       */
+/*   Updated: 2024/06/02 21:05:29 by abhudulo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ extern int	g_exit_x;
 extern int	g_exit_y;
 extern int	g_total_collectibles;
 extern int	g_collected_count;
+extern int	g_move_count;
 
 char		*read_file_content(const char *file_path);
 void		calculate_map_dimensions(const char *content,
