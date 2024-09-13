@@ -1,66 +1,86 @@
-# **So Long Game Project**
+<h1 align="center">🎮 So Long Game Project</h1>
+
+<div align="center">
+
+![Languages](https://img.shields.io/github/languages/top/abdurahim-H/so-long) ![Repo Size](https://img.shields.io/github/repo-size/abdurahim-H/so-long) ![Last Commit](https://img.shields.io/github/last-commit/abdurahim-H/so-long)
+
+</div>
 
 <p align="center">
-  <img src="https://i.imgur.com/Nb6IAUz.gif">
+  <img src="https://i.imgur.com/lTlUmcC.pnghttps://i.imgur.com/lTlUmcC.png" alt="So Long Game Demo">
 </p>
 
-## **Overview**
+---
 
-**So Long** is a 2D puzzle game built with the MiniLibX library, designed to challenge players to collect all items on a map before exiting through the designated exit point. This project was created as part of a learning exercise to understand graphical applications using C programming and MiniLibX library functionalities.
+## 🕹️ **Game Overview**
 
-## **Features**
+**So Long** is an exciting 2D retro puzzle game built with **C** and **MiniLibX**. Your mission: navigate through tricky mazes, collect all the hidden treasures, and escape through the exit—but only after collecting everything! 
 
-- **Dynamic Tile Maps:** Load and play on different maps with varying complexities.
-- **Collectible Tracking:** Players must collect all items on the map before they can exit.
-- **Simple Controls:** Use keyboard arrows to navigate through the map.
-- **Error Handling:** Comprehensive error management for map validation and gameplay integrity.
-- **Visual Feedback:** Real-time updates on game status with collectibles count and exit readiness.
+Prepare to challenge your wits and reflexes in this pixelated adventure. Created as part of the 42 School curriculum, **So Long** is a great mix of fun and learning about graphics programming.
 
-## **Installation**
+---
+
+## 🚀 **Key Features**  
+![Features](https://img.shields.io/badge/Features-Dynamic-blue?style=for-the-badge)
+
+- 🏞️ **Dynamic Tile Maps:** Every map presents a new puzzle with varying complexity.
+- 💎 **Collectible System:** Collect all items before unlocking the exit!
+- 🎮 **Simple, Intuitive Controls:** Use `W`, `A`, `S`, `D` or arrow keys to move.
+- 💡 **Error Handling:** Robust map validation ensures smooth gameplay.
+- 🕹️ **Real-Time Updates:** Visual feedback on collected items and exit readiness.
+
+---
+
+## ⚙️ **Installation**  
+![Install](https://img.shields.io/badge/Installation-Easy-green?style=for-the-badge)
 
 ### Prerequisites
+- **GCC** or compatible C compiler.
+- **MiniLibX** library.
+- **Make** to build the project.
 
-- GCC or another C compiler
-- MiniLibX library
-- Make (for building)
-
-### Building the Game
-
-Clone the repository and build the game using `make`:
+### Build the Game
+To build the game, clone the repository and run `make`:
 
 ```bash
 git clone https://github.com/abdurahim-H/so-long.git
-cd so_long
+cd so-long
 make
 ```
 
-This will compile all necessary files and produce an executable named `so_long`.
+This will generate the `so_long` executable, and you're ready to play!
 
-## **Usage**
+---
 
-To start the game, run the executable with a map file:
+## 🎮 **How to Play**  
+![Gameplay](https://img.shields.io/badge/Gameplay-Exciting-purple?style=for-the-badge)
+
+Start the game by running the executable with a map file:
 
 ```bash
 ./so_long path/to/map_file.ber
 ```
 
-Control the player using the following keyboard keys:
+**Controls:**
+- **W** or ⬆️ - Move Up
+- **S** or ⬇️ - Move Down
+- **A** or ⬅️ - Move Left
+- **D** or ➡️ - Move Right
 
-- **W** - Move up
-- **S** - Move down
-- **A** - Move left
-- **D** - Move right
+---
 
-### Maps
+## 🗺️ **Create Your Own Maps**  
+![Map Creation](https://img.shields.io/badge/Create%20Maps-Fun-yellow?style=for-the-badge)
 
-Maps are text files where each character represents a piece of the game:
+Customize your game experience by creating your own maps! Maps are text files where each character represents part of the game:
+
 - `1` - Wall
 - `0` - Floor
-- `P` - Player start position
+- `P` - Player starting position
 - `C` - Collectible item
-- `E` - Exit point
+- `E` - Exit
 
-An example map looks like this:
+**Example Map:**
 
 ```
 111111
@@ -70,22 +90,57 @@ An example map looks like this:
 111111
 ```
 
-## **Screenshots**
+---
 
+## 🧩 **Error Handling**  
+![Error Handling](https://img.shields.io/badge/Error%20Management-Essential-red?style=flat-square)
+
+The game gracefully handles errors and logs them to a file `error_log.txt` for easier debugging. Invalid inputs, like incorrect map characters, duplicates, or non-integer values, are caught before starting the game.
+
+---
+
+## 📈 **Performance Optimization**  
+![Performance](https://img.shields.io/badge/Performance-Optimized-blue?style=flat-square)
+
+The game’s performance is optimized to handle different map sizes and configurations efficiently. It dynamically loads and validates maps, ensuring smooth gameplay.
+
+---
+
+## 📸 **Screenshots**  
 ![Gameplay Screenshot](https://i.imgur.com/SoXEJJg.png)
 
-## **Contributing**
+---
 
-Contributions to the project are welcome! Please follow these steps:
+## 🛡 **License**  
+![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)
 
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+## 🧑‍💻 **Contributions**  
+![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=flat-square)
+
+Contributions are welcome! Feel free to open issues or submit pull requests. Together, we can make **So Long** even better!
+
+Steps to contribute:
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes and commit them (`git commit -am 'Add some feature'`).
+3. Make your changes and commit (`git commit -am 'Add some feature'`).
 4. Push the branch (`git push origin feature-branch`).
 5. Submit a pull request.
 
-## **Contact**
+---
 
-Abdurahim - abul.hudul@gmail.com
+## 👨‍💻 **Author**  
+![Author](https://img.shields.io/badge/Author-Abdurahim-blue?style=flat-square)
+
+Developed by **Abdurahim** | [GitHub](https://github.com/abdurahim-H)
 
 ---
+
+## 💡 **Inspiration**  
+![Inspiration](https://img.shields.io/badge/Inspiration-42%20School-orange?style=flat-square)
+
+This project was inspired by the curriculum at [42 School](https://www.42heilbronn.de/), blending learning with a hands-on approach to graphical programming and C-based game development.
+

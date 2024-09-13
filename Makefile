@@ -1,6 +1,8 @@
 NAME = so_long
 CC = cc -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
 MLX_PATH = lib/MiniLibX/build/
+MLX_REPO = https://github.com/codam-coding-college/MLX42.git
+MLX_BUILD_PATH = lib/MiniLibX/build/
 MLX = $(MLX_PATH)libmlx42.a -framework OpenGL -framework AppKit -lglfw
 SRC_DIR1 = src/
 SRC_DIR2 = src/srcs/
@@ -17,18 +19,26 @@ CYAN = \033[1;36m
 ORANGE = \033[1;33m
 RESET = \033[0m
 
-# SRCS = $(wildcard $(SRC_DIR)*.c)
 SRCS = $(wildcard $(SRC_DIR1)*.c) $(wildcard $(SRC_DIR2)*.c)
 OBJS = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRCS))
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(MLX_PATH)libmlx42.a $(OBJS)
 	@echo "$(CYAN)Starting linking process...$(RESET)"
 	@echo "$(YELLOW)Linking object files...$(RESET)"
 	$(CC) $(OBJS) $(MLX) -o $(NAME)
 	@echo "$(GREEN)Linking done. Executable created: $(NAME)$(RESET)"
 	@echo "$(CYAN)Linking process finished.$(RESET)"
+
+$(MLX_PATH)libmlx42.a:
+	@echo "$(CYAN)Building MiniLibX...$(RESET)"
+	@if [ ! -d "lib/MiniLibX" ]; then \
+		echo "$(YELLOW)Cloning MiniLibX...$(RESET)"; \
+		git clone $(MLX_REPO) lib/MiniLibX; \
+	fi
+	@cd lib/MiniLibX && cmake -B build && cmake --build build -j4
+	@echo "$(GREEN)MiniLibX built successfully.$(RESET)"
 
 $(OBJ_DIR)%.o: %.c
 	@echo "$(CYAN)Starting compilation process for $<...$(RESET)"
@@ -52,8 +62,9 @@ fclean: clean
 	@echo "$(MAGENTA)Full cleaning...$(RESET)"
 	@echo "$(ORANGE)"
 	rm -f $(NAME)
+	rm -rf $(MLX_BUILD_PATH)
 	@echo "$(RESET)"
-	@echo "$(RED)Full cleaning done. Removed executable: $(NAME)$(RESET)"
+	@echo "$(RED)Full cleaning done. Removed executable: $(NAME) and MiniLibX build folder.$(RESET)"
 	@echo "$(CYAN)Full cleaning process finished.$(RESET)"
 
 re: fclean all
