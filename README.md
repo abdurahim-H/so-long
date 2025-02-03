@@ -7,7 +7,7 @@
 </div>
 
 <p align="center">
-  <img src="https://i.imgur.com/lTlUmcC.pnghttps://i.imgur.com/lTlUmcC.png" alt="So Long Game Demo">
+  <img src="https://i.imgur.com/ux5gK0j.gif" alt="So Long Game Demo">
 </p>
 
 ---
